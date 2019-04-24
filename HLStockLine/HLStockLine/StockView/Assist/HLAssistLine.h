@@ -8,10 +8,31 @@
 
 #import <Foundation/Foundation.h>
 
-NS_ASSUME_NONNULL_BEGIN
-
 @interface HLAssistLine : NSObject
 
-@end
+/**
+ *  位置model
+ */
+@property (nonatomic, strong) HLVolumePostionModel * positionModel;
 
-NS_ASSUME_NONNULL_END
+/**
+ *  k线model
+ */
+@property (nonatomic, strong) HLKLineModel * kLineModel;
+
+/**
+ *  线颜色
+ */
+@property (nonatomic, strong) UIColor * lineColor;
+
+/**
+ *  根据context初始化均线画笔
+ */
+- (instancetype)initWithContext:(CGContextRef)context;
+
+/**
+ *  绘制成交量
+ */
+- (void)draw;
+
+@end

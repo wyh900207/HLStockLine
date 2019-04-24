@@ -187,7 +187,7 @@
         
         CGFloat k_line_width = [HLStockChartViewConfig lineWidth];
         CGFloat line_gap = [HLStockChartViewConfig lineShadowWidth];
-        CGFloat x_position = self.startXPosition + idx * (k_line_width + line_gap);
+        CGFloat x_position = self.startXPosition + idx * (k_line_width + line_gap) + k_line_width * 0.5;
         
         CGFloat open_point_y = ABS(maxY - (klineModel.open.floatValue - minAssert) / unitValue);
         CGFloat close_point_y = ABS(maxY - (klineModel.close.floatValue - minAssert) / unitValue);

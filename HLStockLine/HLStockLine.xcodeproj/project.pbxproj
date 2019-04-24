@@ -27,6 +27,7 @@
 		09380A83227056A7005ADA25 /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = 09380A82227056A7005ADA25 /* data.json */; };
 		09380A8722705904005ADA25 /* HLAssistView.m in Sources */ = {isa = PBXBuildFile; fileRef = 09380A8622705904005ADA25 /* HLAssistView.m */; };
 		09380A8A2270591A005ADA25 /* HLAssistLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 09380A892270591A005ADA25 /* HLAssistLine.m */; };
+		09380A8D22705F06005ADA25 /* HLVolumePostionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 09380A8C22705F06005ADA25 /* HLVolumePostionModel.m */; };
 		A74E2F7F15CAF3F80B0322CE /* libPods-HLStockLine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E7645F05929C3F9B9D25F3DD /* libPods-HLStockLine.a */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +71,8 @@
 		09380A8622705904005ADA25 /* HLAssistView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HLAssistView.m; sourceTree = "<group>"; };
 		09380A882270591A005ADA25 /* HLAssistLine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HLAssistLine.h; sourceTree = "<group>"; };
 		09380A892270591A005ADA25 /* HLAssistLine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HLAssistLine.m; sourceTree = "<group>"; };
+		09380A8B22705F06005ADA25 /* HLVolumePostionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HLVolumePostionModel.h; sourceTree = "<group>"; };
+		09380A8C22705F06005ADA25 /* HLVolumePostionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HLVolumePostionModel.m; sourceTree = "<group>"; };
 		7EE42C92BE68935333311E9D /* Pods-HLStockLine.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HLStockLine.release.xcconfig"; path = "Target Support Files/Pods-HLStockLine/Pods-HLStockLine.release.xcconfig"; sourceTree = "<group>"; };
 		DDF0466B17B9BEA9E03C5D78 /* Pods-HLStockLine.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HLStockLine.debug.xcconfig"; path = "Target Support Files/Pods-HLStockLine/Pods-HLStockLine.debug.xcconfig"; sourceTree = "<group>"; };
 		E7645F05929C3F9B9D25F3DD /* libPods-HLStockLine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HLStockLine.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -180,6 +183,8 @@
 				09380A6C22702E2F005ADA25 /* HLKLinePositionModel.m */,
 				09380A6E22702E3F005ADA25 /* HLKLineModel.h */,
 				09380A6F22702E3F005ADA25 /* HLKLineModel.m */,
+				09380A8B22705F06005ADA25 /* HLVolumePostionModel.h */,
+				09380A8C22705F06005ADA25 /* HLVolumePostionModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -354,6 +359,7 @@
 				09380A5D22701A08005ADA25 /* OTJQuotationPriceView.m in Sources */,
 				09380A7722702F88005ADA25 /* HLStockChartViewConfig.m in Sources */,
 				09380A7A22703241005ADA25 /* HLStockChartMainView.m in Sources */,
+				09380A8D22705F06005ADA25 /* HLVolumePostionModel.m in Sources */,
 				09380A6422701A22005ADA25 /* UIColor+Hex.m in Sources */,
 				09380A8A2270591A005ADA25 /* HLAssistLine.m in Sources */,
 				09380A7022702E3F005ADA25 /* HLKLineModel.m in Sources */,

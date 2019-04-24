@@ -11,8 +11,10 @@
 
 #import "HLStockChartViewConfig.h"
 
-// K线数
+// Model
 #import "HLKLineModel.h"
+#import "HLKLinePositionModel.h"
+#import "HLVolumePostionModel.h"
 
 // 价格信息
 #import "OTJQuotationPriceView.h"
@@ -24,7 +26,6 @@
 #import "HLIndicationSegmentView.h"
 
 // K线坐标
-#import "HLKLinePositionModel.h"
 
 // 主视图
 #import "HLKLine.h"
