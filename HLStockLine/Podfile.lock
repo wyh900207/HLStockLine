@@ -1,0 +1,70 @@
+PODS:
+  - AFNetworking (3.2.1):
+    - AFNetworking/NSURLSession (= 3.2.1)
+    - AFNetworking/Reachability (= 3.2.1)
+    - AFNetworking/Security (= 3.2.1)
+    - AFNetworking/Serialization (= 3.2.1)
+    - AFNetworking/UIKit (= 3.2.1)
+  - AFNetworking/NSURLSession (3.2.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.2.1)
+  - AFNetworking/Security (3.2.1)
+  - AFNetworking/Serialization (3.2.1)
+  - AFNetworking/UIKit (3.2.1):
+    - AFNetworking/NSURLSession
+  - Masonry (1.1.0)
+  - MJRefresh (3.1.16)
+  - SDCycleScrollView (1.75):
+    - SDWebImage (>= 4.0.0)
+  - SDWebImage (4.4.6):
+    - SDWebImage/Core (= 4.4.6)
+  - SDWebImage/Core (4.4.6)
+  - WMPageController (2.4.3)
+  - WXHTextBoxField (0.0.1)
+  - YYCache (1.0.4)
+
+DEPENDENCIES:
+  - AFNetworking (= 3.2.1)
+  - Masonry (= 1.1.0)
+  - MJRefresh
+  - SDCycleScrollView (= 1.75)
+  - SDWebImage
+  - WMPageController (~> 2.4.0)
+  - WXHTextBoxField (from `https://github.com/568071718/xh_textfield.git`, tag `0.0.1`)
+  - YYCache (~> 1.0.4)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AFNetworking
+    - Masonry
+    - MJRefresh
+    - SDCycleScrollView
+    - SDWebImage
+    - WMPageController
+    - YYCache
+
+EXTERNAL SOURCES:
+  WXHTextBoxField:
+    :git: https://github.com/568071718/xh_textfield.git
+    :tag: 0.0.1
+
+CHECKOUT OPTIONS:
+  WXHTextBoxField:
+    :git: https://github.com/568071718/xh_textfield.git
+    :tag: 0.0.1
+
+SPEC CHECKSUMS:
+  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  MJRefresh: 7798e16e53a5ef7f332dd05b27664db4e29530fd
+  SDCycleScrollView: 884b88f0266dd4708a0e1934975c69cb971707b1
+  SDWebImage: 3f3f0c02f09798048c47a5ed0a13f17b063572d8
+  WMPageController: 4c7f2c636675a71aea5eecf8fdc07a0ce86954e3
+  WXHTextBoxField: 17732e98f66a930df16bf04acc8da8ce3045f302
+  YYCache: 8105b6638f5e849296c71f331ff83891a4942952
+
+PODFILE CHECKSUM: 38fa2d1f0c520b28526849789449024db33b45c6
+
+COCOAPODS: 1.6.1

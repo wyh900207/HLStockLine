@@ -13,6 +13,21 @@
 		09380A4A227017B6005ADA25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09380A49227017B6005ADA25 /* Assets.xcassets */; };
 		09380A4D227017B6005ADA25 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09380A4B227017B6005ADA25 /* LaunchScreen.storyboard */; };
 		09380A50227017B6005ADA25 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 09380A4F227017B6005ADA25 /* main.m */; };
+		09380A592270187F005ADA25 /* HLStockChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 09380A582270187F005ADA25 /* HLStockChartView.m */; };
+		09380A5D22701A08005ADA25 /* OTJQuotationPriceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 09380A5C22701A08005ADA25 /* OTJQuotationPriceView.m */; };
+		09380A6322701A22005ADA25 /* OTJDateUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 09380A5F22701A22005ADA25 /* OTJDateUtils.m */; };
+		09380A6422701A22005ADA25 /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 09380A6122701A22005ADA25 /* UIColor+Hex.m */; };
+		09380A6922702DEE005ADA25 /* HLKLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 09380A6822702DEE005ADA25 /* HLKLine.m */; };
+		09380A6D22702E2F005ADA25 /* HLKLinePositionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 09380A6C22702E2F005ADA25 /* HLKLinePositionModel.m */; };
+		09380A7022702E3F005ADA25 /* HLKLineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 09380A6F22702E3F005ADA25 /* HLKLineModel.m */; };
+		09380A7722702F88005ADA25 /* HLStockChartViewConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 09380A7622702F88005ADA25 /* HLStockChartViewConfig.m */; };
+		09380A7A22703241005ADA25 /* HLStockChartMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 09380A7922703241005ADA25 /* HLStockChartMainView.m */; };
+		09380A7E22703FD7005ADA25 /* HLTimeSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 09380A7D22703FD7005ADA25 /* HLTimeSegmentView.m */; };
+		09380A81227052D8005ADA25 /* HLIndicationSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 09380A80227052D8005ADA25 /* HLIndicationSegmentView.m */; };
+		09380A83227056A7005ADA25 /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = 09380A82227056A7005ADA25 /* data.json */; };
+		09380A8722705904005ADA25 /* HLAssistView.m in Sources */ = {isa = PBXBuildFile; fileRef = 09380A8622705904005ADA25 /* HLAssistView.m */; };
+		09380A8A2270591A005ADA25 /* HLAssistLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 09380A892270591A005ADA25 /* HLAssistLine.m */; };
+		A74E2F7F15CAF3F80B0322CE /* libPods-HLStockLine.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E7645F05929C3F9B9D25F3DD /* libPods-HLStockLine.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +41,38 @@
 		09380A4C227017B6005ADA25 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		09380A4E227017B6005ADA25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		09380A4F227017B6005ADA25 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		09380A572270187F005ADA25 /* HLStockChartView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HLStockChartView.h; sourceTree = "<group>"; };
+		09380A582270187F005ADA25 /* HLStockChartView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HLStockChartView.m; sourceTree = "<group>"; };
+		09380A5B22701A08005ADA25 /* OTJQuotationPriceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTJQuotationPriceView.h; sourceTree = "<group>"; };
+		09380A5C22701A08005ADA25 /* OTJQuotationPriceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTJQuotationPriceView.m; sourceTree = "<group>"; };
+		09380A5F22701A22005ADA25 /* OTJDateUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OTJDateUtils.m; sourceTree = "<group>"; };
+		09380A6022701A22005ADA25 /* OTJDateUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTJDateUtils.h; sourceTree = "<group>"; };
+		09380A6122701A22005ADA25 /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
+		09380A6222701A22005ADA25 /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
+		09380A65227028AC005ADA25 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		09380A6722702DEE005ADA25 /* HLKLine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HLKLine.h; sourceTree = "<group>"; };
+		09380A6822702DEE005ADA25 /* HLKLine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HLKLine.m; sourceTree = "<group>"; };
+		09380A6B22702E2F005ADA25 /* HLKLinePositionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HLKLinePositionModel.h; sourceTree = "<group>"; };
+		09380A6C22702E2F005ADA25 /* HLKLinePositionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HLKLinePositionModel.m; sourceTree = "<group>"; };
+		09380A6E22702E3F005ADA25 /* HLKLineModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HLKLineModel.h; sourceTree = "<group>"; };
+		09380A6F22702E3F005ADA25 /* HLKLineModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HLKLineModel.m; sourceTree = "<group>"; };
+		09380A7422702E86005ADA25 /* HLStockChartViewModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HLStockChartViewModule.h; sourceTree = "<group>"; };
+		09380A7522702F88005ADA25 /* HLStockChartViewConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HLStockChartViewConfig.h; sourceTree = "<group>"; };
+		09380A7622702F88005ADA25 /* HLStockChartViewConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HLStockChartViewConfig.m; sourceTree = "<group>"; };
+		09380A7822703241005ADA25 /* HLStockChartMainView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HLStockChartMainView.h; sourceTree = "<group>"; };
+		09380A7922703241005ADA25 /* HLStockChartMainView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HLStockChartMainView.m; sourceTree = "<group>"; };
+		09380A7C22703FD7005ADA25 /* HLTimeSegmentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HLTimeSegmentView.h; sourceTree = "<group>"; };
+		09380A7D22703FD7005ADA25 /* HLTimeSegmentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HLTimeSegmentView.m; sourceTree = "<group>"; };
+		09380A7F227052D8005ADA25 /* HLIndicationSegmentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HLIndicationSegmentView.h; sourceTree = "<group>"; };
+		09380A80227052D8005ADA25 /* HLIndicationSegmentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HLIndicationSegmentView.m; sourceTree = "<group>"; };
+		09380A82227056A7005ADA25 /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
+		09380A8522705904005ADA25 /* HLAssistView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HLAssistView.h; sourceTree = "<group>"; };
+		09380A8622705904005ADA25 /* HLAssistView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HLAssistView.m; sourceTree = "<group>"; };
+		09380A882270591A005ADA25 /* HLAssistLine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HLAssistLine.h; sourceTree = "<group>"; };
+		09380A892270591A005ADA25 /* HLAssistLine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HLAssistLine.m; sourceTree = "<group>"; };
+		7EE42C92BE68935333311E9D /* Pods-HLStockLine.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HLStockLine.release.xcconfig"; path = "Target Support Files/Pods-HLStockLine/Pods-HLStockLine.release.xcconfig"; sourceTree = "<group>"; };
+		DDF0466B17B9BEA9E03C5D78 /* Pods-HLStockLine.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HLStockLine.debug.xcconfig"; path = "Target Support Files/Pods-HLStockLine/Pods-HLStockLine.debug.xcconfig"; sourceTree = "<group>"; };
+		E7645F05929C3F9B9D25F3DD /* libPods-HLStockLine.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HLStockLine.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A74E2F7F15CAF3F80B0322CE /* libPods-HLStockLine.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +92,8 @@
 			children = (
 				09380A3F227017AF005ADA25 /* HLStockLine */,
 				09380A3E227017AF005ADA25 /* Products */,
+				23F3D5362A3555E06934560D /* Pods */,
+				6D9FF949AD58A17DC8C1BCA9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,6 +108,8 @@
 		09380A3F227017AF005ADA25 /* HLStockLine */ = {
 			isa = PBXGroup;
 			children = (
+				09380A5E22701A0C005ADA25 /* Category */,
+				09380A562270186D005ADA25 /* StockView */,
 				09380A40227017AF005ADA25 /* AppDelegate.h */,
 				09380A41227017AF005ADA25 /* AppDelegate.m */,
 				09380A43227017AF005ADA25 /* ViewController.h */,
@@ -67,8 +119,108 @@
 				09380A4B227017B6005ADA25 /* LaunchScreen.storyboard */,
 				09380A4E227017B6005ADA25 /* Info.plist */,
 				09380A4F227017B6005ADA25 /* main.m */,
+				09380A65227028AC005ADA25 /* PrefixHeader.pch */,
+				09380A82227056A7005ADA25 /* data.json */,
 			);
 			path = HLStockLine;
+			sourceTree = "<group>";
+		};
+		09380A562270186D005ADA25 /* StockView */ = {
+			isa = PBXGroup;
+			children = (
+				09380A7422702E86005ADA25 /* HLStockChartViewModule.h */,
+				09380A7522702F88005ADA25 /* HLStockChartViewConfig.h */,
+				09380A7622702F88005ADA25 /* HLStockChartViewConfig.m */,
+				09380A84227058F4005ADA25 /* Assist */,
+				09380A7B22703FBC005ADA25 /* Segment */,
+				09380A6A22702E24005ADA25 /* Model */,
+				09380A6622702DCA005ADA25 /* MainChart */,
+				09380A5A227019FD005ADA25 /* PriceView */,
+				09380A572270187F005ADA25 /* HLStockChartView.h */,
+				09380A582270187F005ADA25 /* HLStockChartView.m */,
+			);
+			path = StockView;
+			sourceTree = "<group>";
+		};
+		09380A5A227019FD005ADA25 /* PriceView */ = {
+			isa = PBXGroup;
+			children = (
+				09380A5B22701A08005ADA25 /* OTJQuotationPriceView.h */,
+				09380A5C22701A08005ADA25 /* OTJQuotationPriceView.m */,
+			);
+			path = PriceView;
+			sourceTree = "<group>";
+		};
+		09380A5E22701A0C005ADA25 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				09380A6022701A22005ADA25 /* OTJDateUtils.h */,
+				09380A5F22701A22005ADA25 /* OTJDateUtils.m */,
+				09380A6222701A22005ADA25 /* UIColor+Hex.h */,
+				09380A6122701A22005ADA25 /* UIColor+Hex.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		09380A6622702DCA005ADA25 /* MainChart */ = {
+			isa = PBXGroup;
+			children = (
+				09380A6722702DEE005ADA25 /* HLKLine.h */,
+				09380A6822702DEE005ADA25 /* HLKLine.m */,
+				09380A7822703241005ADA25 /* HLStockChartMainView.h */,
+				09380A7922703241005ADA25 /* HLStockChartMainView.m */,
+			);
+			path = MainChart;
+			sourceTree = "<group>";
+		};
+		09380A6A22702E24005ADA25 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				09380A6B22702E2F005ADA25 /* HLKLinePositionModel.h */,
+				09380A6C22702E2F005ADA25 /* HLKLinePositionModel.m */,
+				09380A6E22702E3F005ADA25 /* HLKLineModel.h */,
+				09380A6F22702E3F005ADA25 /* HLKLineModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		09380A7B22703FBC005ADA25 /* Segment */ = {
+			isa = PBXGroup;
+			children = (
+				09380A7C22703FD7005ADA25 /* HLTimeSegmentView.h */,
+				09380A7D22703FD7005ADA25 /* HLTimeSegmentView.m */,
+				09380A7F227052D8005ADA25 /* HLIndicationSegmentView.h */,
+				09380A80227052D8005ADA25 /* HLIndicationSegmentView.m */,
+			);
+			path = Segment;
+			sourceTree = "<group>";
+		};
+		09380A84227058F4005ADA25 /* Assist */ = {
+			isa = PBXGroup;
+			children = (
+				09380A882270591A005ADA25 /* HLAssistLine.h */,
+				09380A892270591A005ADA25 /* HLAssistLine.m */,
+				09380A8522705904005ADA25 /* HLAssistView.h */,
+				09380A8622705904005ADA25 /* HLAssistView.m */,
+			);
+			path = Assist;
+			sourceTree = "<group>";
+		};
+		23F3D5362A3555E06934560D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DDF0466B17B9BEA9E03C5D78 /* Pods-HLStockLine.debug.xcconfig */,
+				7EE42C92BE68935333311E9D /* Pods-HLStockLine.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		6D9FF949AD58A17DC8C1BCA9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E7645F05929C3F9B9D25F3DD /* libPods-HLStockLine.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -78,9 +230,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 09380A53227017B6005ADA25 /* Build configuration list for PBXNativeTarget "HLStockLine" */;
 			buildPhases = (
+				47A8363029AA43BBCB1CA1A3 /* [CP] Check Pods Manifest.lock */,
 				09380A39227017AF005ADA25 /* Sources */,
 				09380A3A227017AF005ADA25 /* Frameworks */,
 				09380A3B227017AF005ADA25 /* Resources */,
+				2A16A7E28645F74D1F1BF2AA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -131,19 +285,80 @@
 				09380A4D227017B6005ADA25 /* LaunchScreen.storyboard in Resources */,
 				09380A4A227017B6005ADA25 /* Assets.xcassets in Resources */,
 				09380A48227017AF005ADA25 /* Main.storyboard in Resources */,
+				09380A83227056A7005ADA25 /* data.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2A16A7E28645F74D1F1BF2AA /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-HLStockLine/Pods-HLStockLine-resources.sh",
+				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HLStockLine/Pods-HLStockLine-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		47A8363029AA43BBCB1CA1A3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HLStockLine-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		09380A39227017AF005ADA25 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09380A81227052D8005ADA25 /* HLIndicationSegmentView.m in Sources */,
+				09380A8722705904005ADA25 /* HLAssistView.m in Sources */,
 				09380A45227017AF005ADA25 /* ViewController.m in Sources */,
+				09380A6D22702E2F005ADA25 /* HLKLinePositionModel.m in Sources */,
 				09380A50227017B6005ADA25 /* main.m in Sources */,
+				09380A592270187F005ADA25 /* HLStockChartView.m in Sources */,
+				09380A6922702DEE005ADA25 /* HLKLine.m in Sources */,
+				09380A7E22703FD7005ADA25 /* HLTimeSegmentView.m in Sources */,
+				09380A5D22701A08005ADA25 /* OTJQuotationPriceView.m in Sources */,
+				09380A7722702F88005ADA25 /* HLStockChartViewConfig.m in Sources */,
+				09380A7A22703241005ADA25 /* HLStockChartMainView.m in Sources */,
+				09380A6422701A22005ADA25 /* UIColor+Hex.m in Sources */,
+				09380A8A2270591A005ADA25 /* HLAssistLine.m in Sources */,
+				09380A7022702E3F005ADA25 /* HLKLineModel.m in Sources */,
 				09380A42227017AF005ADA25 /* AppDelegate.m in Sources */,
+				09380A6322701A22005ADA25 /* OTJDateUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,10 +498,12 @@
 		};
 		09380A54227017B6005ADA25 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DDF0466B17B9BEA9E03C5D78 /* Pods-HLStockLine.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3U4T4928GM;
+				GCC_PREFIX_HEADER = /Users/wyh/Desktop/HLStockLine/HLStockLine/HLStockLine/PrefixHeader.pch;
 				INFOPLIST_FILE = HLStockLine/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -294,16 +511,18 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = orange.com.HLStockLine;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		09380A55227017B6005ADA25 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7EE42C92BE68935333311E9D /* Pods-HLStockLine.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3U4T4928GM;
+				GCC_PREFIX_HEADER = /Users/wyh/Desktop/HLStockLine/HLStockLine/HLStockLine/PrefixHeader.pch;
 				INFOPLIST_FILE = HLStockLine/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -311,7 +530,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = orange.com.HLStockLine;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

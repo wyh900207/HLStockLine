@@ -1,0 +1,18 @@
+//
+//  PrefixHeader.pch
+//  HLStockLine
+//
+//  Created by wyh on 2019/4/24.
+//  Copyright © 2019 wyh. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#import "UIColor+Hex.h"
+#import "OTJDateUtils.h"
+#import "HLStockChartViewModule.h"
+
+#import <Masonry/Masonry.h>
+
+#endif /* PrefixHeader_pch */
