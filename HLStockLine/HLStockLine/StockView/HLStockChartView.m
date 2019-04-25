@@ -241,6 +241,12 @@
 
 - (void)stockMainViewDisplayModels:(NSArray *)displayModels {
     self.assistView.displayKlineModels = displayModels;
+    
+    // TOOD: 这里应该用分时数据
+    HLKLineModel * model = displayModels.lastObject;
+    if (model) {
+        self.priceView.model = model;
+    }
 }
 
 - (void)stockMainViewDisplayColors:(NSArray *)colors {

@@ -11,8 +11,6 @@
 
 @interface OTJQuotationPriceView : UIView
 
-//@property (nonatomic, strong) HLKLineModel *model;
-
 @property (nonatomic, strong) UILabel *priceLabel;
 @property (nonatomic, strong) UILabel *pointsLabel;
 @property (nonatomic, strong) UILabel *dateLabel;
@@ -20,5 +18,7 @@
 @property (nonatomic, strong) UILabel *openLabel;
 @property (nonatomic, strong) UILabel *lowLabel;
 @property (nonatomic, strong) UILabel *closeLabel;
+
+@property (nonatomic, strong) HLKLineModel * model;
 
 @end

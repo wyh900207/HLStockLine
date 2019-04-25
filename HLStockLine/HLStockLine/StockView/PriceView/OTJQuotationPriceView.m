@@ -62,6 +62,15 @@
     }];
 }
 
+#pragma mark - Setter
+
+- (void)setModel:(HLKLineModel *)model {
+    _model = model;
+    
+    self.priceLabel.text = [NSString stringWithFormat:@"%.2f", model.high.floatValue];
+    self.pointsLabel.text = [NSString stringWithFormat:@"%.2f", model.high.floatValue];
+}
+
 #pragma mark - Getter
 
 - (UILabel *)priceLabel {
