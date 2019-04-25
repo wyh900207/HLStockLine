@@ -419,12 +419,12 @@
     NSMutableArray *kLineColors = @[].mutableCopy;
     
     // K线图上部的各种指标
-    CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor); // ASSIST_BACKGROUND_COLOR.CGColor
+    CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor); // ASSIST_BACKGROUND_COLOR.CGColor | HexColor(@"1d2227") | [UIColor whiteColor]
     CGContextFillRect(context, CGRectMake(0, 0, rect.size.width, 15));
     
     // 日期区域背景色
-    CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor); // ASSIST_BACKGROUND_COLOR.CGColor
-    CGContextFillRect(context, CGRectMake(0, rect.size.height - 15, rect.size.width, 24));
+    CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor); // ASSIST_BACKGROUND_COLOR.CGColor | HexColor(@"1d2227") | [UIColor whiteColor]
+    CGContextFillRect(context, CGRectMake(0, rect.size.height - 24, rect.size.width, 24));
     
     // 日期上&下线条
     CGContextSetLineWidth(context, 0.5);
@@ -440,7 +440,7 @@
     
     HLMALine *MALine = [[HLMALine alloc] initWithContext:context];
     
-//    if (self.type == HLKLineMainViewTypeKLine) {
+    if (self.MainViewType == Y_StockChartcenterViewTypeKline) {
         HLKLine *line = [[HLKLine alloc] initWithContext:context];
         line.maxY = rect.size.height - 24;
         
@@ -450,8 +450,38 @@
             UIColor *color = [line draw];
             [kLineColors addObject:color];
         }];
-//    }
-    
+    }
+    else {
+        __block NSMutableArray *positions = @[].mutableCopy;
+        [self.displayLinePositionModel enumerateObjectsUsingBlock:^(HLKLinePositionModel * _Nonnull positionModel, NSUInteger idx, BOOL * _Nonnull stop) {
+            UIColor *strokeColor = positionModel.open.y < positionModel.close.y ? COLOR_INCREASING : COLOR_DECREASING;
+            [kLineColors addObject:strokeColor];
+            [positions addObject:[NSValue valueWithCGPoint:positionModel.close]];
+        }];
+        MALine.MAPositions = positions;
+        MALine.MAType = -1;
+        [MALine draw];
+        //
+        __block CGPoint lastDrawDatePoint = CGPointZero;//fix
+        [self.displayLinePositionModel enumerateObjectsUsingBlock:^(HLKLinePositionModel * _Nonnull positionModel, NSUInteger idx, BOOL * _Nonnull stop) {
+            
+            CGPoint point = [positions[idx] CGPointValue];
+            
+            //日期
+            NSDate *date = [NSDate dateWithTimeIntervalSince1970:self.displayLineModel[idx].date.doubleValue];
+            NSDateFormatter *formatter = [NSDateFormatter new];
+            formatter.dateFormat = @"HH:mm";
+            NSString *dateStr = [formatter stringFromDate:date];
+            
+            CGPoint drawDatePoint = CGPointMake(point.x + 1, rect.size.height - 15 + 1.5);
+            if(CGPointEqualToPoint(lastDrawDatePoint, CGPointZero) || point.x - lastDrawDatePoint.x > 60 )
+            {
+                [dateStr drawAtPoint:drawDatePoint withAttributes:@{NSFontAttributeName : [UIFont systemFontOfSize:11],NSForegroundColorAttributeName: HexColor(@"565a64")}];
+                lastDrawDatePoint = drawDatePoint;
+            }
+        }];
+    }
+
     if (self.targetLineStatus == Y_StockChartTargetLineStatusBOLL) {
         // 画BOLL MB线 标准线
         MALine.MAType = Y_BOLL_MB;

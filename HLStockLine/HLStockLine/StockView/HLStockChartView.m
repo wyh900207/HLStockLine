@@ -17,6 +17,7 @@
 @property (nonatomic, strong) OTJQuotationPriceView   * priceView;
 @property (nonatomic, strong) HLIndicationSegmentView * mainSegmentView;
 @property (nonatomic, strong) HLIndicationSegmentView * assistSegmentView;
+@property (nonatomic, strong) HLRightQuotationView    * rightQuotationView;
 
 @end
 
@@ -40,6 +41,7 @@
     [self addSubview:self.mainSegmentView];
     [self addSubview:self.assistSegmentView];
     [self.scrollView addSubview:self.assistView];
+    [self addSubview:self.rightQuotationView];
     
     [self.priceView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self);
@@ -77,6 +79,10 @@
         make.left.equalTo(self.kLineView);
         make.width.equalTo(self.kLineView);
         make.bottom.equalTo(self);
+    }];
+    [self.rightQuotationView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.right.equalTo(self.kLineView);
+        make.bottom.equalTo(self.kLineView).offset(-24);
     }];
 }
 
@@ -137,7 +143,8 @@
 - (HLStockChartMainView *)kLineView {
     if (!_kLineView) {
         _kLineView = [HLStockChartMainView new];
-        _kLineView.targetLineStatus = Y_StockChartTargetLineStatusMA;
+        _kLineView.MainViewType = Y_StockChartcenterViewTypeKline;
+        _kLineView.targetLineStatus = Y_StockChartTargetLineStatusEMA;
         _kLineView.delegate = self;
     }
     return _kLineView;
@@ -164,8 +171,18 @@
 - (HLAssistView *)assistView {
     if (!_assistView) {
         _assistView = [HLAssistView new];
+        _assistView.targetLineStatus = Y_StockChartTargetLineStatusMACD;
     }
     return _assistView;
+}
+
+- (HLRightQuotationView *)rightQuotationView {
+    if (!_rightQuotationView) {
+        _rightQuotationView = [HLRightQuotationView new];
+        _rightQuotationView.backgroundColor = [UIColor clearColor];
+        _rightQuotationView.userInteractionEnabled = NO;
+    }
+    return _rightQuotationView;
 }
 
 #pragma mark - Setter
@@ -235,7 +252,9 @@
 }
 
 - (void)stockMainViewCurrentMaxPrice:(CGFloat)maxPrice minPrice:(CGFloat)minPrice {
-    
+    self.rightQuotationView.maxValue = maxPrice;
+    self.rightQuotationView.minValue = minPrice;
+    self.rightQuotationView.middleValue = (maxPrice + minPrice) * 0.5;
 }
 
 #pragma mark - UIScrollViewDelegate
