@@ -26,19 +26,19 @@
 }
 
 - (void)draw {
-//    if(!self.kLineModel || !self.positionModel || !self.context || !self.lineColor) return;
-//
-//    CGContextRef context = self.context;
-//    CGContextSetStrokeColorWithColor(context, COLOR_INCREASING.CGColor);
-//    CGContextSetLineWidth(context, [HLStockChartViewConfig lineWidth]);
-//
-//    CGPoint solidPoints[] = {self.positionModel.StartPoint, self.positionModel.EndPoint};
-//
-//    if(self.kLineModel.MACD.floatValue > 0)
-//    {
-//        CGContextSetStrokeColorWithColor(context, COLOR_DECREASING.CGColor);
-//    }
-//    CGContextStrokeLineSegments(context, solidPoints, 2);
+    if(!self.kLineModel || !self.positionModel || !self.context || !self.lineColor) return;
+
+    CGContextRef context = self.context;
+    CGContextSetStrokeColorWithColor(context, COLOR_INCREASING.CGColor);
+    CGContextSetLineWidth(context, [HLStockChartViewConfig lineWidth]);
+
+    CGPoint solidPoints[] = {self.positionModel.StartPoint, self.positionModel.EndPoint};
+
+    if(self.kLineModel.MACD.floatValue > 0)
+    {
+        CGContextSetStrokeColorWithColor(context, COLOR_DECREASING.CGColor);
+    }
+    CGContextStrokeLineSegments(context, solidPoints, 2);
 }
 
 @end

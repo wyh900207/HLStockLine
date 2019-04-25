@@ -229,6 +229,7 @@
 - (void)stockMainViewDisplayColors:(NSArray *)colors {
     self.assistView.targetLineStatus = Y_StockChartTargetLineStatusMACD;
     //[self.assistView maProfileWithModel:_kLineModels.lastObject];
+    self.assistView.kLineColors = colors; 
     [self.assistView layoutIfNeeded];
     [self.assistView draw];
 }
