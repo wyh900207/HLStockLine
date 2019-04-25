@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+@class HLKLineGroupModel;
 
 @interface HLKLineModel : NSObject
 
@@ -23,6 +24,8 @@
 
 // 前一个Model
 @property (nonatomic, strong) HLKLineModel *PreviousKlineModel;
+// 父ModelArray:用来给当前Model索引到Parent数组
+@property (nonatomic, strong) HLKLineGroupModel *ParentGroupModel;
 // 该Model及其之前所有收盘价之和
 @property (nonatomic, copy) NSNumber *SumOfLastClose;
 // 该Model及其之前所有成交量之和
@@ -146,14 +149,14 @@
 
 
 //初始化Model
-- (void) initWithArray:(NSArray *)arr;
+- (void)initWithArray:(NSArray *)arr;
 
-- (void) initWithDict:(NSDictionary *)dict;
+- (void)initWithDict:(NSDictionary *)dict;
 
 //初始化第一条数据
-- (void) initFirstModel;
+- (void)initFirstModel;
 
 //初始化其他数据
-- (void)initData ;
+- (void)initData;
 
 @end

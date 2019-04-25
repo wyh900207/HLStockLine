@@ -8,6 +8,11 @@
 
 #import "HLStockChartViewConfig.h"
 
+/**
+ *  是否为EMA线
+ */
+static Y_StockChartTargetLineStatus Y_StockChartKLineIsEMALine = Y_StockChartTargetLineStatusMA;
+
 @implementation HLStockChartViewConfig
 
 + (CGFloat)lineWidth {
@@ -16,6 +21,10 @@
 
 + (CGFloat)lineShadowWidth {
     return 1;
+}
+
++ (CGFloat)isEMALine {
+    return Y_StockChartKLineIsEMALine;
 }
 
 @end

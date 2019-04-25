@@ -13,6 +13,7 @@
 
 // Model
 #import "HLKLineModel.h"
+#import "HLKLineGroupModel.h"
 #import "HLKLinePositionModel.h"
 #import "HLVolumePostionModel.h"
 

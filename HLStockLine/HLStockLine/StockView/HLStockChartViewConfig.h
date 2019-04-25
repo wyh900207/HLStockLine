@@ -43,5 +43,6 @@ typedef NS_ENUM(NSInteger, Y_StockChartTargetLineStatus) {
 
 + (CGFloat)lineWidth;
 + (CGFloat)lineShadowWidth;
++ (CGFloat)isEMALine;
 
 @end

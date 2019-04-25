@@ -10,7 +10,8 @@
 
 @interface ViewController ()
 
-@property (nonatomic, strong) HLStockChartView * stockChartView;
+@property (nonatomic, strong) HLStockChartView  * stockChartView;
+@property (nonatomic, strong) HLKLineGroupModel * groupModel;
 
 @end
 
@@ -32,7 +33,7 @@
         make.left.right.bottom.equalTo(self.view);
     }];
     
-    self.stockChartView.kLineModels = [self allKLineModels];
+    self.stockChartView.kLineModels = self.groupModel.models;
     [self.stockChartView draw];
 }
 
@@ -46,6 +47,18 @@
 }
 
 #pragma mark - Private
+
+- (HLKLineGroupModel *)groupModel {
+    if (!_groupModel) {
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"data" ofType:@"json"];
+        NSData *data = [[NSData alloc] initWithContentsOfFile:path];
+        
+        NSArray<NSArray<NSString *> *> *array = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        
+        _groupModel = [HLKLineGroupModel objectWithArray:array];
+    }
+    return _groupModel;
+}
 
 // 模拟假数据
 - (NSArray<HLKLineModel *> *)allKLineModels {
