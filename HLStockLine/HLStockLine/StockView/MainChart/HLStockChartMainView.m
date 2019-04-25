@@ -124,9 +124,9 @@
         }
     }
     
-//    if (self.delegate && [self.delegate respondsToSelector:@selector(kLineMainViewCurrentNeedDrawKLineModels:)]) {
-//        [self.delegate kLineMainViewCurrentNeedDrawKLineModels:self.lineModels];
-//    }
+    if (self.delegate && [self.delegate respondsToSelector:@selector(stockMainViewDisplayModels:)]) {
+        [self.delegate stockMainViewDisplayModels:self.displayLineModel];
+    }
     
     return self.displayLineModel;
 }
@@ -231,14 +231,14 @@
         [self.displayLinePositionModel addObject:line_position_model];
     }
     
-//    if (self.delegate) {
-//        if ([self.delegate respondsToSelector:@selector(kLineMainViewCurrentMaxPrice:minPrice:)]) {
-//            [self.delegate kLineMainViewCurrentMaxPrice:maxAssert minPrice:minAssert];
-//        }
-//        if ([self.delegate respondsToSelector:@selector(kLineMainViewCurrentNeedDrawKLinePositionModels:)]) {
-//            [self.delegate kLineMainViewCurrentNeedDrawKLinePositionModels:self.positionModels];
-//        }
-//    }
+    if (self.delegate) {
+        if ([self.delegate respondsToSelector:@selector(stockMainViewCurrentMaxPrice:minPrice:)]) {
+            [self.delegate stockMainViewCurrentMaxPrice:maxAssert minPrice:minAssert];
+        }
+        if ([self.delegate respondsToSelector:@selector(stockMainViewDisplayPostionModels:)]) {
+            [self.delegate stockMainViewDisplayPostionModels:self.displayLinePositionModel];
+        }
+    }
     
     return self.displayLinePositionModel;
 }
@@ -290,11 +290,11 @@
         }];
 //    }
     
-//    if (self.delegate && kLineColors > 0) {
-//        if ([self.delegate respondsToSelector:@selector(kLineMainViewCurrentNeedDrawKLineColors:)]) {
-//            [self.delegate kLineMainViewCurrentNeedDrawKLineColors:kLineColors];
-//        }
-//    }
+    if (self.delegate && kLineColors > 0) {
+        if ([self.delegate respondsToSelector:@selector(stockMainViewDisplayColors:)]) {
+            [self.delegate stockMainViewDisplayColors:kLineColors];
+        }
+    }
 }
 
 #pragma mark - KVO
@@ -306,7 +306,7 @@
         CGFloat k_line_gap = [HLStockChartViewConfig lineShadowWidth];
         
         CGFloat difValue = ABS(self.parentScrollView.contentOffset.x - self.oldContentOffsetX);
-        if (difValue >= (k_line_width + k_line_gap)) {
+//        if (difValue >= (k_line_width + k_line_gap)) {
             self.oldContentOffsetX = self.parentScrollView.contentOffset.x;
             [self draw];
             //            CGRect rect = self.frame;
@@ -315,7 +315,7 @@
                 make.left.equalTo(self.parentScrollView).offset(self.parentScrollView.contentOffset.x);
                 make.width.equalTo(self.parentScrollView);
             }];
-        }
+//        }
     }
 }
 

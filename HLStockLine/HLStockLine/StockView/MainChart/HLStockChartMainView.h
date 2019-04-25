@@ -8,7 +8,27 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol HLStockChartMainViewDelegate <NSObject>
+
+// 长按显示手指按着的Y_KLinePosition和KLineModel
+- (void)stockMainViewLongPressPositionModel:(HLKLinePositionModel *)positionModel kLineModel:(HLKLineModel *)model;
+// 当前MainView的最大值和最小值
+- (void)stockMainViewCurrentMaxPrice:(CGFloat)maxPrice minPrice:(CGFloat)minPrice;
+// 当前需要绘制的K线模型数组
+- (void)stockMainViewDisplayModels:(NSArray *)displayModels;
+// 当前需要绘制的K线位置模型数组
+- (void)stockMainViewDisplayPostionModels:(NSArray *)displayPostionModels;
+// 当前需要绘制的K线颜色数组
+- (void)stockMainViewDisplayColors:(NSArray *)colors;
+
+@end
+
 @interface HLStockChartMainView : UIView
+
+/**
+ *  代理
+ */
+@property (nonatomic, weak) id<HLStockChartMainViewDelegate> delegate;
 
 /**
  模型数组

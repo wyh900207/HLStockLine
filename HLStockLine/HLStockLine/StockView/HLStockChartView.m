@@ -8,7 +8,7 @@
 
 #import "HLStockChartView.h"
 
-@interface HLStockChartView () <UIScrollViewDelegate, HLTimeSegmentViewDelegate, HLIndicationSegmentViewDelegate>
+@interface HLStockChartView () <UIScrollViewDelegate, HLTimeSegmentViewDelegate, HLIndicationSegmentViewDelegate, HLStockChartMainViewDelegate>
 
 @property (nonatomic, strong) HLAssistView            * assistView;
 @property (nonatomic, strong) UIScrollView            * scrollView;
@@ -72,12 +72,12 @@
         make.left.right.equalTo(self);
         make.height.equalTo(@30);
     }];
-//    [self.assistView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(self.assistSegmentView.mas_bottom);
-//        make.left.equalTo(self.kLineView);
-//        make.width.equalTo(self.kLineView);
-//        make.bottom.equalTo(self.scrollView);
-//    }];
+    [self.assistView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.assistSegmentView.mas_bottom);
+        make.left.equalTo(self.kLineView);
+        make.width.equalTo(self.kLineView);
+        make.bottom.equalTo(self.scrollView);
+    }];
 }
 
 #pragma mark - 画KLineMainView
@@ -138,7 +138,7 @@
     if (!_kLineView) {
         _kLineView = [HLStockChartMainView new];
         _kLineView.backgroundColor = [UIColor orangeColor];
-        //_kLineView.delegate = self;
+        _kLineView.delegate = self;
     }
     return _kLineView;
 }
@@ -210,6 +210,31 @@
 #pragma mark - HLIndicationSegmentViewDelegate
 
 - (void)indicationView:(HLIndicationSegmentView *)indicationView didSelectIndex:(NSInteger)index {
+    
+}
+
+#pragma mark - HLStockChartMainViewDelegate
+
+- (void)stockMainViewLongPressPositionModel:(HLKLinePositionModel *)positionModel kLineModel:(HLKLineModel *)model {
+    
+}
+
+- (void)stockMainViewDisplayPostionModels:(NSArray *)displayPostionModels {
+    self.assistView.displayPositionModels = displayPostionModels;
+}
+
+- (void)stockMainViewDisplayModels:(NSArray *)displayModels {
+    self.assistView.displayKlineModels = displayModels;
+}
+
+- (void)stockMainViewDisplayColors:(NSArray *)colors {
+    self.assistView.targetLineStatus = Y_StockChartTargetLineStatusMACD;
+    //[self.assistView maProfileWithModel:_kLineModels.lastObject];
+    [self.assistView layoutIfNeeded];
+    [self.assistView draw];
+}
+
+- (void)stockMainViewCurrentMaxPrice:(CGFloat)maxPrice minPrice:(CGFloat)minPrice {
     
 }
 

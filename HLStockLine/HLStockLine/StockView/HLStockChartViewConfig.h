@@ -40,6 +40,11 @@ typedef NS_ENUM(NSInteger, Y_StockChartTargetLineStatus) {
 #define Y_StockChartKLineAccessoryViewMinY 20
 // K线图的副图最大的Y
 #define Y_StockChartKLineAccessoryViewMaxY (self.frame.size.height)
+// K线图的副图中间的Y
+//#define Y_StockChartKLineAccessoryViewMiddleY (self.frame.size.height-20)/2.f + 20
+#define Y_StockChartKLineAccessoryViewMiddleY (maxY - (0.f-minValue)/unitValue)
+// MA线的宽度
+#define WIDTH_MA 0.8
 
 + (CGFloat)lineWidth;
 + (CGFloat)lineShadowWidth;

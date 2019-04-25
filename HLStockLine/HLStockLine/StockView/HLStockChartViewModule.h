@@ -34,6 +34,7 @@
 // 辅助视图
 #import "HLAssistLine.h"
 #import "HLAssistView.h"
+#import "HLMALine.h"
 // 成交量视图 (无需求)
 
 // 完整视图
