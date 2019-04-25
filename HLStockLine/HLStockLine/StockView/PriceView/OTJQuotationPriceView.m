@@ -68,7 +68,7 @@
     _model = model;
     
     self.priceLabel.text = [NSString stringWithFormat:@"%.2f", model.high.floatValue];
-    self.pointsLabel.text = [NSString stringWithFormat:@"%.2f", model.high.floatValue];
+    self.pointsLabel.text = [NSString stringWithFormat:@"%@   %@", model.changePoints, model.changePercent];
 }
 
 #pragma mark - Getter

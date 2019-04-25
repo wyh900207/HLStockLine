@@ -12,15 +12,19 @@
 @interface HLKLineModel : NSObject
 
 // 日期
-@property (nonatomic, copy) NSString *date;
+@property (nonatomic, copy  ) NSString * date;
 // 开盘价
-@property (nonatomic, strong) NSNumber *open;
+@property (nonatomic, strong) NSNumber * open;
 // 收盘价
-@property (nonatomic, strong) NSNumber *close;
+@property (nonatomic, strong) NSNumber * close;
 // 最高价
-@property (nonatomic, strong) NSNumber *high;
+@property (nonatomic, strong) NSNumber * high;
 // 最低价
-@property (nonatomic, strong) NSNumber *low;
+@property (nonatomic, strong) NSNumber * low;
+// 张跌值
+@property (nonatomic, strong) NSString * changePoints;
+// 涨跌幅
+@property (nonatomic, strong) NSString * changePercent;
 
 // 前一个Model
 @property (nonatomic, strong) HLKLineModel *PreviousKlineModel;

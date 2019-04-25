@@ -533,6 +533,8 @@
         _close = @([arr[2] floatValue]);
         _high = @([arr[3] floatValue]);
         _low = @([arr[4] floatValue]);
+        _changePoints = arr[5];
+        _changePercent = arr[6];
         
         _Volume = [arr[5] floatValue];
         self.SumOfLastClose = @(_close.floatValue + self.PreviousKlineModel.SumOfLastClose.floatValue);
