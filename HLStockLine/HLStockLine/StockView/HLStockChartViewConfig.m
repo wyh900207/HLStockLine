@@ -16,7 +16,7 @@ static Y_StockChartTargetLineStatus Y_StockChartKLineIsEMALine = Y_StockChartTar
 @implementation HLStockChartViewConfig
 
 + (CGFloat)lineWidth {
-    return 10;
+    return 5;
 }
 
 + (CGFloat)lineShadowWidth {

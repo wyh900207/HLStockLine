@@ -51,6 +51,16 @@
 @property (nonatomic, assign) NSInteger pinchStartIndex;
 
 /**
+ *  是否为图表类型
+ */
+@property (nonatomic, assign) Y_StockChartCenterViewType MainViewType;
+
+/**
+ *  Accessory指标种类
+ */
+@property (nonatomic, assign) Y_StockChartTargetLineStatus targetLineStatus;
+
+/**
  画MainView所有线
  */
 - (void)draw;

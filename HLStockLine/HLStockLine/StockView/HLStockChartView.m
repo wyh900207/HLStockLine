@@ -76,7 +76,7 @@
         make.top.equalTo(self.assistSegmentView.mas_bottom);
         make.left.equalTo(self.kLineView);
         make.width.equalTo(self.kLineView);
-        make.bottom.equalTo(self.scrollView);
+        make.bottom.equalTo(self);
     }];
 }
 
@@ -137,7 +137,7 @@
 - (HLStockChartMainView *)kLineView {
     if (!_kLineView) {
         _kLineView = [HLStockChartMainView new];
-        _kLineView.backgroundColor = [UIColor orangeColor];
+        _kLineView.targetLineStatus = Y_StockChartTargetLineStatusMA;
         _kLineView.delegate = self;
     }
     return _kLineView;
@@ -164,7 +164,6 @@
 - (HLAssistView *)assistView {
     if (!_assistView) {
         _assistView = [HLAssistView new];
-        _assistView.backgroundColor = [UIColor orangeColor];
     }
     return _assistView;
 }

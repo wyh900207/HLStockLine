@@ -40,4 +40,7 @@
 // 完整视图
 #import "HLStockChartView.h"
 
+#define weakify(o) autoreleasepool{} __weak typeof(o) o##_weak = o;
+#define strongtify(o) autoreleasepool{} __strong typeof(o) o = o##_weak;
+
 #endif /* HLStockChartViewModule_h */

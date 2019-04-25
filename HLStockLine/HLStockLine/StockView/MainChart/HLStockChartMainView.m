@@ -15,6 +15,11 @@
 @property (nonatomic, assign) CGFloat                                  oldScale;
 @property (nonatomic, strong) NSMutableArray<HLKLineModel *>         * displayLineModel;
 @property (nonatomic, strong) NSMutableArray<HLKLinePositionModel *> * displayLinePositionModel;
+@property (nonatomic, strong) NSMutableArray *MA7Positions;
+@property (nonatomic, strong) NSMutableArray *MA30Positions;
+@property (nonatomic, strong) NSMutableArray *BOLL_MBPositions;
+@property (nonatomic, strong) NSMutableArray *BOLL_UPPositions;
+@property (nonatomic, strong) NSMutableArray *BOLL_DNPositions;
 
 @end
 
@@ -25,6 +30,12 @@
     if (self) {
         self.displayLineModel = @[].mutableCopy;
         self.displayLinePositionModel = @[].mutableCopy;
+        self.MA7Positions = @[].mutableCopy;
+        self.MA30Positions = @[].mutableCopy;
+        
+        self.BOLL_UPPositions = @[].mutableCopy;
+        self.BOLL_DNPositions = @[].mutableCopy;
+        self.BOLL_MBPositions = @[].mutableCopy;
         
         self.needDrawStartIndex = 0;
         self.oldContentOffsetX = 0;
@@ -140,6 +151,8 @@
     __block CGFloat minAssert = firstModel.low.floatValue;
     __block CGFloat maxAssert = firstModel.high.floatValue;
     
+    @weakify(self);
+    
     [kLineModels enumerateObjectsUsingBlock:^(HLKLineModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (obj.high.floatValue > maxAssert) {
             maxAssert = obj.high.floatValue;
@@ -148,8 +161,59 @@
             minAssert = obj.low.floatValue;
         }
         
-        minAssert = obj.low.floatValue > minAssert ? minAssert : obj.low.floatValue;
-        maxAssert = obj.high.floatValue < maxAssert ? maxAssert : obj.high.floatValue;
+//        minAssert = obj.low.floatValue > minAssert ? minAssert : obj.low.floatValue;
+//        maxAssert = obj.high.floatValue < maxAssert ? maxAssert : obj.high.floatValue;
+        
+        @strongtify(self);
+        if (self.targetLineStatus == Y_StockChartTargetLineStatusBOLL) {
+            if (obj.BOLL_MB) {
+                if (minAssert > obj.BOLL_MB.floatValue) {
+                    minAssert = obj.BOLL_MB.floatValue;
+                }
+                if (maxAssert < obj.BOLL_MB.floatValue) {
+                    maxAssert = obj.BOLL_MB.floatValue;
+                }
+            }
+            if(obj.BOLL_UP)
+            {
+                if (minAssert > obj.BOLL_UP.floatValue) {
+                    minAssert = obj.BOLL_UP.floatValue;
+                }
+                if (maxAssert < obj.BOLL_UP.floatValue) {
+                    maxAssert = obj.BOLL_UP.floatValue;
+                }
+            }
+            
+            if(obj.BOLL_DN)
+            {
+                if (minAssert > obj.BOLL_DN.floatValue) {
+                    minAssert = obj.BOLL_DN.floatValue;
+                }
+                if (maxAssert < obj.BOLL_DN.floatValue) {
+                    maxAssert = obj.BOLL_DN.floatValue;
+                }
+            }
+        }
+        else {
+            if(obj.MA7)
+            {
+                if (minAssert > obj.MA7.floatValue) {
+                    minAssert = obj.MA7.floatValue;
+                }
+                if (maxAssert < obj.MA7.floatValue) {
+                    maxAssert = obj.MA7.floatValue;
+                }
+            }
+            if(obj.MA30)
+            {
+                if (minAssert > obj.MA30.floatValue) {
+                    minAssert = obj.MA30.floatValue;
+                }
+                if (maxAssert < obj.MA30.floatValue) {
+                    maxAssert = obj.MA30.floatValue;
+                }
+            }
+        }
     }];
     
     CGFloat minY = 20;
@@ -181,6 +245,12 @@
      */
     
     [self.displayLinePositionModel removeAllObjects];
+    [self.MA7Positions removeAllObjects];
+    [self.MA30Positions removeAllObjects];
+    
+    [self.BOLL_MBPositions removeAllObjects];
+    [self.BOLL_UPPositions removeAllObjects];
+    [self.BOLL_DNPositions removeAllObjects];
     
     for (NSUInteger idx = 0; idx < kLineModels.count; idx++) {
         HLKLineModel *klineModel = kLineModels[idx];
@@ -229,6 +299,96 @@
         
         HLKLinePositionModel *line_position_model = [HLKLinePositionModel modelWithOpen:open_point close:close_point high:high_point low:low_point];
         [self.displayLinePositionModel addObject:line_position_model];
+        
+        // MA坐标转换
+        CGFloat ma7Y = maxY;
+        CGFloat ma30Y = maxY;
+        if(unitValue > 0.0000001)
+        {
+            if(klineModel.MA7)
+            {
+                ma7Y = maxY - (klineModel.MA7.floatValue - minAssert)/unitValue;
+            }
+            
+        }
+        if(unitValue > 0.0000001)
+        {
+            if(klineModel.MA30)
+            {
+                ma30Y = maxY - (klineModel.MA30.floatValue - minAssert)/unitValue;
+            }
+        }
+        
+        NSAssert(!isnan(ma7Y) && !isnan(ma30Y), @"出现NAN值");
+        
+        CGPoint ma7Point = CGPointMake(x_position, ma7Y);
+        CGPoint ma30Point = CGPointMake(x_position, ma30Y);
+        
+        if(klineModel.MA7)
+        {
+            [self.MA7Positions addObject:[NSValue valueWithCGPoint: ma7Point]];
+        }
+        if(klineModel.MA30)
+        {
+            [self.MA30Positions addObject:[NSValue valueWithCGPoint: ma30Point]];
+        }
+        
+        
+        if(_targetLineStatus == Y_StockChartTargetLineStatusBOLL){
+            
+            
+            //BOLL坐标转换
+            CGFloat boll_mbY = maxY;
+            CGFloat boll_upY = maxY;
+            CGFloat boll_dnY = maxY;
+            
+            NSLog(@"position：\n上: %@ \n中: %@ \n下: %@",klineModel.BOLL_UP,klineModel.BOLL_MB,klineModel.BOLL_DN);
+            
+            
+            if(unitValue > 0.0000001)
+            {
+                
+                if(klineModel.BOLL_MB)
+                {
+                    boll_mbY = maxY - (klineModel.BOLL_MB.floatValue - minAssert)/unitValue;
+                }
+                
+            }
+            if(unitValue > 0.0000001)
+            {
+                if(klineModel.BOLL_DN)
+                {
+                    boll_dnY = maxY - (klineModel.BOLL_DN.floatValue - minAssert)/unitValue ;
+                }
+            }
+            
+            if(unitValue > 0.0000001)
+            {
+                if(klineModel.BOLL_UP)
+                {
+                    boll_upY = maxY - (klineModel.BOLL_UP.floatValue - minAssert)/unitValue;
+                }
+            }
+            
+            NSAssert(!isnan(boll_mbY) && !isnan(boll_upY) && !isnan(boll_dnY), @"出现BOLL值");
+            
+            CGPoint boll_mbPoint = CGPointMake(x_position, boll_mbY);
+            CGPoint boll_upPoint = CGPointMake(x_position, boll_upY);
+            CGPoint boll_dnPoint = CGPointMake(x_position, boll_dnY);
+            
+            
+            if (klineModel.BOLL_MB) {
+                [self.BOLL_MBPositions addObject:[NSValue valueWithCGPoint:boll_mbPoint]];
+            }
+            
+            if (klineModel.BOLL_UP) {
+                [self.BOLL_UPPositions addObject:[NSValue valueWithCGPoint:boll_upPoint]];
+            }
+            if (klineModel.BOLL_DN) {
+                [self.BOLL_DNPositions addObject:[NSValue valueWithCGPoint:boll_dnPoint]];
+            }
+            
+        }
     }
     
     if (self.delegate) {
@@ -278,6 +438,8 @@
     CGContextStrokeLineSegments(context, top_line, 2);
     CGContextStrokeLineSegments(context, bottom_line, 2);
     
+    HLMALine *MALine = [[HLMALine alloc] initWithContext:context];
+    
 //    if (self.type == HLKLineMainViewTypeKLine) {
         HLKLine *line = [[HLKLine alloc] initWithContext:context];
         line.maxY = rect.size.height - 24;
@@ -289,6 +451,34 @@
             [kLineColors addObject:color];
         }];
 //    }
+    
+    if (self.targetLineStatus == Y_StockChartTargetLineStatusBOLL) {
+        // 画BOLL MB线 标准线
+        MALine.MAType = Y_BOLL_MB;
+        MALine.BOLLPositions = self.BOLL_MBPositions;
+        [MALine draw];
+        
+        // 画BOLL UP 上浮线
+        MALine.MAType = Y_BOLL_UP;
+        MALine.BOLLPositions = self.BOLL_UPPositions;
+        [MALine draw];
+        
+        // 画BOLL DN下浮线
+        MALine.MAType = Y_BOLL_DN;
+        MALine.BOLLPositions = self.BOLL_DNPositions;
+        [MALine draw];
+    }
+    else if (self.targetLineStatus != Y_StockChartTargetLineStatusCloseMA) {
+        // MA7
+        MALine.MAType = Y_MA7Type;
+        MALine.MAPositions = self.MA7Positions;
+        [MALine draw];
+        
+        // MA30
+        MALine.MAType = Y_MA30Type;
+        MALine.MAPositions = self.MA30Positions;
+        [MALine draw];
+    }
     
     if (self.delegate && kLineColors > 0) {
         if ([self.delegate respondsToSelector:@selector(stockMainViewDisplayColors:)]) {
