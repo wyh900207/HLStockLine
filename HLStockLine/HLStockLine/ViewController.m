@@ -12,6 +12,7 @@
 
 @property (nonatomic, strong) HLStockChartView  * stockChartView;
 @property (nonatomic, strong) HLKLineGroupModel * groupModel;
+@property (nonatomic, strong) HLMinuteView      * minuteView;
 
 @end
 
@@ -27,14 +28,15 @@
 #pragma mark - UI
 
 - (void)setupSubviews {
-    [self.view addSubview:self.stockChartView];
-    [self.stockChartView mas_makeConstraints:^(MASConstraintMaker *make) {
+//    [self.view addSubview:self.stockChartView];
+    [self.view addSubview:self.minuteView];
+    [self.minuteView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.inset(64);
         make.left.right.bottom.equalTo(self.view);
     }];
     
-    self.stockChartView.kLineModels = self.groupModel.models;
-    [self.stockChartView draw];
+//    self.stockChartView.kLineModels = self.groupModel.models;
+//    [self.stockChartView draw];
 }
 
 #pragma mark - Getter
@@ -44,6 +46,13 @@
         _stockChartView = [HLStockChartView new];
     }
     return _stockChartView;
+}
+
+- (HLMinuteView *)minuteView {
+    if (!_minuteView) {
+        _minuteView = [HLMinuteView new];
+    }
+    return _minuteView;
 }
 
 #pragma mark - Private

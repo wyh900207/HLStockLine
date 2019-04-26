@@ -16,6 +16,7 @@
 #import "HLKLineGroupModel.h"
 #import "HLKLinePositionModel.h"
 #import "HLVolumePostionModel.h"
+#import "HLMinutesGroupModel.h"
 
 // 价格信息
 #import "OTJQuotationPriceView.h"
@@ -31,6 +32,7 @@
 // 主视图
 #import "HLKLine.h"
 #import "HLStockChartMainView.h"
+#import "HLMinuteView.h"
 // 辅助视图
 #import "HLAssistLine.h"
 #import "HLAssistView.h"

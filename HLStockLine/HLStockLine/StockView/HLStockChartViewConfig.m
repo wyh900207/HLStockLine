@@ -8,15 +8,26 @@
 
 #import "HLStockChartViewConfig.h"
 
-/**
- *  是否为EMA线
- */
+// 是否为EMA线
 static Y_StockChartTargetLineStatus Y_StockChartKLineIsEMALine = Y_StockChartTargetLineStatusMA;
+// K线宽度
+static CGFloat StockLineWidth = 5;
 
 @implementation HLStockChartViewConfig
 
 + (CGFloat)lineWidth {
-    return 5;
+    return StockLineWidth;
+}
+
++ (void)setLineWidth:(CGFloat)lineWidth {
+    if (lineWidth > MAX_K_LINE_WIDTH) {
+        lineWidth = MAX_K_LINE_WIDTH;
+    }
+    if (lineWidth < MIN_K_LINE_WIDTH) {
+        lineWidth = MIN_K_LINE_WIDTH;
+    }
+    
+    StockLineWidth = lineWidth;
 }
 
 + (CGFloat)lineShadowWidth {

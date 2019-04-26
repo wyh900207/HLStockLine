@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface HLStockChartViewConfig : NSObject
-
 //Kline种类
 typedef NS_ENUM(NSInteger, Y_StockChartCenterViewType) {
     Y_StockChartcenterViewTypeKline= 1, //K线
@@ -38,6 +36,14 @@ typedef NS_ENUM(NSInteger, Y_StockChartTargetLineStatus) {
 
 // K线图的副图上最小的Y
 #define Y_StockChartKLineAccessoryViewMinY 20
+// K线最大宽度
+#define MAX_K_LINE_WIDTH 20
+// K线最小宽度
+#define MIN_K_LINE_WIDTH 2
+// K线图缩放界限
+#define Y_StockChartScaleBound 0.03
+// K线的缩放因子
+#define Y_StockChartScaleFactor 0.03
 // K线图的副图最大的Y
 #define Y_StockChartKLineAccessoryViewMaxY (self.frame.size.height)
 // K线图的副图中间的Y
@@ -46,7 +52,10 @@ typedef NS_ENUM(NSInteger, Y_StockChartTargetLineStatus) {
 // MA线的宽度
 #define WIDTH_MA 0.8
 
+@interface HLStockChartViewConfig : NSObject
+
 + (CGFloat)lineWidth;
++ (void)setLineWidth:(CGFloat)lineWidth;
 + (CGFloat)lineShadowWidth;
 + (CGFloat)isEMALine;
 

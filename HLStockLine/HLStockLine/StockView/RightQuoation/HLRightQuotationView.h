@@ -15,5 +15,4 @@
 @property(nonatomic, assign) CGFloat    minValue;
 @property(nonatomic, copy  ) NSString * minLabelText;
 
-
 @end

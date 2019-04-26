@@ -210,7 +210,34 @@
 #pragma mark - Touch Event
 
 - (void)pichMethod:(UIPinchGestureRecognizer *)pinch {
-    
+    static CGFloat oldScale = 1.0f;
+    CGFloat difValue = pinch.scale - oldScale;
+    if(ABS(difValue) > Y_StockChartScaleBound) {
+        CGFloat oldKLineWidth = [HLStockChartViewConfig lineWidth];
+        if (oldKLineWidth == MIN_K_LINE_WIDTH && difValue <= 0)
+        {
+            return;
+        }
+        
+        NSInteger oldNeedDrawStartIndex = [self.kLineView getNeedDrawStartIndexWithScroll:NO];
+        
+        [HLStockChartViewConfig setLineWidth:oldKLineWidth * (difValue > 0 ? (1 + Y_StockChartScaleFactor) : (1 - Y_StockChartScaleFactor))];
+        oldScale = pinch.scale;
+        
+        if( pinch.numberOfTouches == 2 ) {
+            CGPoint p1 = [pinch locationOfTouch:0 inView:self.scrollView];
+            CGPoint p2 = [pinch locationOfTouch:1 inView:self.scrollView];
+            CGPoint centerPoint = CGPointMake((p1.x+p2.x)/2, (p1.y+p2.y)/2);
+            NSUInteger oldLeftArrCount = ABS((centerPoint.x - self.scrollView.contentOffset.x) - 1) / (1 + oldKLineWidth);
+            NSUInteger newLeftArrCount = ABS((centerPoint.x - self.scrollView.contentOffset.x) - 1) / (1 + [HLStockChartViewConfig lineWidth]);
+            
+            self.kLineView.pinchStartIndex = oldNeedDrawStartIndex + oldLeftArrCount - newLeftArrCount;
+        }
+        //更新MainView的宽度
+        [self.kLineView updateMainViewWidth];
+        
+        [self.kLineView draw];
+    }
 }
 
 - (void)longPressMethod:(UILongPressGestureRecognizer *)longPress {
