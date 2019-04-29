@@ -12,6 +12,8 @@
 
 @property (nonatomic, strong) HLRightQuotationView * rightQuotationView;
 @property (nonatomic, strong) NSMutableArray<HLMinutesPositionModel *> * postionModels;
+@property (nonatomic, strong) UIView * timeView;
+@property (nonatomic, strong) NSMutableArray<UILabel *> * timeLabels;
 
 @end
 
@@ -21,6 +23,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.postionModels = @[].mutableCopy;
+        self.timeLabels = @[].mutableCopy;
         [self setupSubviews];
     }
     return self;
@@ -30,9 +33,15 @@
 
 - (void)setupSubviews {
     [self addSubview:self.rightQuotationView];
+    [self addSubview:self.timeView];
     
     [self.rightQuotationView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self);
+        make.top.left.right.equalTo(self);
+        make.bottom.equalTo(self).offset(-20);
+    }];
+    [self.timeView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.bottom.right.equalTo(self);
+        make.height.equalTo(@20);
     }];
 }
 
@@ -53,7 +62,7 @@
     //  画虚线
     for (int i = 1; i < 4; i++) {
         CGFloat origin_x = rect.size.width * (0.25 * i);
-        CGFloat origin_y = rect.size.height * (0.25 * i);
+        CGFloat origin_y = (rect.size.height - 20) * (0.25 * i);
         CGFloat lengths[] = {5, 5};
         CGContextSetLineCap(context, kCGLineCapRound);
         CGContextSetLineWidth(context, 1);
@@ -88,8 +97,50 @@
     }
     CGContextStrokePath(context);
 
-    
     CGContextClosePath(context);
+    
+    // 时间
+    for (UIView *sub in self.timeView.subviews) {
+        [sub removeFromSuperview];
+    }
+    
+    for (int i = 0; i <= 4; i++) {
+        NSInteger count = self.groupModel.dateList.count / 5;
+        
+        UILabel * label = [UILabel new];
+        label.font = [UIFont systemFontOfSize:10];
+        label.textColor = HexColor(@"B7B7B7");
+        
+        CGRect frame = CGRectZero;
+        NSString * text = @"";
+        
+        if (i == 0) {
+            frame = CGRectMake(0, 0, 60, 20);
+            label.textAlignment = NSTextAlignmentLeft;
+            text = self.groupModel.dateList[1];
+        }
+        else if (i == 4) {
+            frame = CGRectMake(rect.size.width - 60, 0, 60, 20);
+            label.textAlignment = NSTextAlignmentRight;
+            text = self.groupModel.dateList.lastObject;
+        }
+        else {
+            frame = CGRectMake(rect.size.width * 0.25 * i - 30, 0, 60, 20);
+            label.textAlignment = NSTextAlignmentCenter;
+            text = self.groupModel.dateList[count * i];
+        }
+        
+        label.frame = frame;
+        label.text = text;
+        [self.timeView addSubview:label];
+        [self.timeLabels addObject:label];
+    }
+    
+    UIView * space_view = [UIView new];
+    space_view.backgroundColor = [UIColor lightGrayColor];
+    space_view.alpha = .2;
+    space_view.frame = CGRectMake(0, 0, rect.size.width, 1);
+    [self.timeView addSubview:space_view];
 }
 
 #pragma mark - Public Methods
@@ -186,6 +237,14 @@
         _groupModel = [self dataSource];
     }
     return _groupModel;
+}
+
+- (UIView *)timeView {
+    if (!_timeView) {
+        _timeView = [UIView new];
+        _timeView.backgroundColor = HexColor(@"FFFFFF");
+    }
+    return _timeView;
 }
 
 #pragma mark - Test
