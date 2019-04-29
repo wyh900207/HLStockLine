@@ -277,7 +277,31 @@
 #pragma mark - HLIndicationSegmentViewDelegate
 
 - (void)indicationView:(HLIndicationSegmentView *)indicationView didSelectIndex:(NSInteger)index {
-    
+    if (indicationView == self.mainSegmentView) {
+        // 主图指标
+        if (index == 0) {
+            self.kLineView.targetLineStatus = Y_StockChartCenterViewTypeSMA;
+        }
+        else if (index == 1) {
+            self.kLineView.targetLineStatus = Y_StockChartTargetLineStatusEMA;
+        }
+        else {
+            self.kLineView.targetLineStatus = Y_StockChartTargetLineStatusBOLL;
+        }
+    }
+    else {
+        // 辅助视图指标
+        if (index == 0) {
+            self.kLineView.targetLineStatus = Y_StockChartTargetLineStatusMACD;
+        }
+        else if (index == 1) {
+            self.kLineView.targetLineStatus = Y_StockChartTargetLineStatusKDJ;
+        }
+        else {
+            self.kLineView.targetLineStatus = Y_StockChartCenterViewTypeRSI;
+        }
+    }
+    [self.kLineView draw];
 }
 
 #pragma mark - HLStockChartMainViewDelegate

@@ -24,8 +24,9 @@ typedef NS_ENUM(NSInteger, Y_StockChartTargetLineStatus) {
     Y_StockChartTargetLineStatusMA , //MA线
     Y_StockChartTargetLineStatusEMA,  //EMA线
     Y_StockChartTargetLineStatusBOLL,  //BOLL线
+    Y_StockChartCenterViewTypeSMA,      // SMA
+    Y_StockChartCenterViewTypeRSI,      // RSI
     Y_StockChartTargetLineStatusCloseMA  //MA关闭线
-    
 };
 
 #define ASSIST_TEXT_COLOR HexColor(@"565a64")
