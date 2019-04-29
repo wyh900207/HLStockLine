@@ -18,6 +18,7 @@
 @property (nonatomic, strong) HLIndicationSegmentView * mainSegmentView;
 @property (nonatomic, strong) HLIndicationSegmentView * assistSegmentView;
 @property (nonatomic, strong) HLRightQuotationView    * rightQuotationView;
+@property (nonatomic, strong) HLMinuteView            * minuteView;
 
 @end
 
@@ -36,6 +37,7 @@
 - (void)setupSubviews {
     [self addSubview:self.priceView];
     [self addSubview:self.timeSegmentView];
+    [self addSubview:self.minuteView];
     [self addSubview:self.scrollView];
     [self.scrollView addSubview:self.kLineView];
     [self addSubview:self.mainSegmentView];
@@ -84,6 +86,11 @@
         make.top.left.right.equalTo(self.kLineView);
         make.bottom.equalTo(self.kLineView).offset(-24);
     }];
+    [self.minuteView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.scrollView);
+    }];
+    
+    [self bringSubviewToFront:self.minuteView];
 }
 
 #pragma mark - 画KLineMainView
@@ -108,6 +115,14 @@
         _priceView = [OTJQuotationPriceView new];
     }
     return _priceView;
+}
+
+- (HLMinuteView *)minuteView {
+    if (!_minuteView) {
+        _minuteView = [HLMinuteView new];
+        _minuteView.yestodayClosePoints = @(37500);
+    }
+    return _minuteView;
 }
 
 - (HLTimeSegmentView *)timeSegmentView {
@@ -247,7 +262,13 @@
 #pragma mark - HLTimeSegmentViewDelegate
 
 - (void)segmentView:(HLTimeSegmentView *)segmentView didSelectIndex:(NSInteger)index {
-    
+    if (index == 0) {
+        [self bringSubviewToFront:self.minuteView];
+    }
+    else {
+        [self bringSubviewToFront:self.scrollView];
+        [self bringSubviewToFront:self.mainSegmentView];
+    }
 }
 
 #pragma mark - HLIndicationSegmentViewDelegate

@@ -24,7 +24,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor colorWithRed:248/255.0 green:248/255.0 blue:248/255.0 alpha:1/1.0];
-        self.currentSelectedIndex = 1;
+        self.currentSelectedIndex = 0;
     }
     return self;
 }

@@ -11,7 +11,7 @@
 @interface HLMinuteView ()
 
 @property (nonatomic, strong) HLRightQuotationView * rightQuotationView;
-@property (nonatomic, strong) HLMinutesGroupModel  * groupModel;
+@property (nonatomic, strong) NSMutableArray<HLMinutesPositionModel *> * postionModels;
 
 @end
 
@@ -20,6 +20,7 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
+        self.postionModels = @[].mutableCopy;
         [self setupSubviews];
     }
     return self;
@@ -40,13 +41,62 @@
 - (void)drawRect:(CGRect)rect {
     [super drawRect:rect];
     
+    // 模型转换
+    [self convertMinutesModelToPostionModel];
+    
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    CGContextSetLineWidth(context, 0.5);
-    UIColor * strock_color = [UIColor blueColor];
+    // 背景色
+    CGContextSetFillColorWithColor(context, HexColor(@"FFFFFF").CGColor);
+    CGContextFillRect(context, rect);
+    
+    //  画虚线
+    for (int i = 1; i < 4; i++) {
+        CGFloat origin_x = rect.size.width * (0.25 * i);
+        CGFloat origin_y = rect.size.height * (0.25 * i);
+        CGFloat lengths[] = {5, 5};
+        CGContextSetLineCap(context, kCGLineCapRound);
+        CGContextSetLineWidth(context, 1);
+        CGContextSetStrokeColorWithColor(context, HexColor(@"EEEEEE").CGColor);
+        CGContextBeginPath(context);
+        CGContextSetLineDash(context, 0, lengths, 2);
+        // 纵向
+        CGContextMoveToPoint(context, origin_x, 0);
+        CGContextAddLineToPoint(context, origin_x, rect.size.height);
+        // 横向
+        CGContextMoveToPoint(context, 0, origin_y);
+        CGContextAddLineToPoint(context, rect.size.width, origin_y);
+        
+        CGContextStrokePath(context);
+    }
+    
+    CGContextSetLineWidth(context, 1);
+    UIColor * strock_color = HexColor(@"1BA1C6");//266EBF
     CGContextSetStrokeColorWithColor(context, strock_color.CGColor);
     
-    [self convertMinutesModelToPostionModel];
+    CGFloat lengths[] = {5, 0};
+    CGContextSetLineDash(context, 0, lengths, 2);
+    
+    for (int idx = 0; idx < self.postionModels.count; idx++) {
+        HLMinutesPositionModel * position_model = self.postionModels[idx];
+        if (idx == 0) {
+            CGContextMoveToPoint(context, position_model.point.x, position_model.point.y);
+        }
+        else {
+            CGContextAddLineToPoint(context, position_model.point.x, position_model.point.y);
+        }
+    }
+    CGContextStrokePath(context);
+
+    
+    CGContextClosePath(context);
+}
+
+#pragma mark - Public Methods
+
+- (void)draw {
+//    [self convertMinutesModelToPostionModel];
+    [self setNeedsDisplay];
 }
 
 #pragma mark - Private Methods
@@ -59,20 +109,44 @@
         if (model.point) [points addObject:model.point];
     }
     
+    // 最大值 & 最小值
     NSInteger maxValue = [[points valueForKeyPath:@"@max.integerValue"] integerValue];
     NSInteger minValue = [[points valueForKeyPath:@"@min.integerValue"] integerValue];
     
+    NSInteger max_point_y = 0;
+    NSInteger min_point_y = 0;
+    
     if (!self.yestodayClosePoints) return;
     
+    // 最大偏离点 & 最小偏离点
     NSInteger max_reduce = maxValue - self.yestodayClosePoints.integerValue;
     NSInteger min_reduce = self.yestodayClosePoints.integerValue - minValue;
     
     if (max_reduce > min_reduce) {
-        min_reduce = self.yestodayClosePoints.integerValue - max_reduce;
+        min_point_y = self.yestodayClosePoints.integerValue - max_reduce;
+        max_point_y = self.yestodayClosePoints.integerValue + max_reduce;
     }
     else {
-        max_reduce = self.yestodayClosePoints.integerValue + min_reduce;
+        max_point_y = self.yestodayClosePoints.integerValue + min_reduce;
+        min_point_y = self.yestodayClosePoints.integerValue - min_reduce;
     }
+    
+    // X 坐标
+    //__block NSMutableArray<HLMinutesPositionModel *> * postion_models = @[].mutableCopy;
+    [self.postionModels removeAllObjects];
+    CGFloat unit_value_x = self.bounds.size.width / self.groupModel.dateList.count;
+    CGFloat unit_value_y = (max_point_y - min_point_y) / (self.bounds.size.height - 40);
+    //CGFloat min_Y = self.frame.origin.y;
+    CGFloat max_Y = self.bounds.size.height - 20;
+    
+    @weakify(self);
+    [self.groupModel.dataList enumerateObjectsUsingBlock:^(HLMinutesModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        @strongtify(self);
+        CGFloat postion_y = ABS(max_Y - (obj.point.floatValue - minValue) / unit_value_y);
+        HLMinutesPositionModel * minute_position = [HLMinutesPositionModel new];
+        minute_position.point = CGPointMake(unit_value_x * idx, postion_y);
+        [self.postionModels addObject:minute_position];
+    }];
 }
 
 #pragma mark - Getter
@@ -84,6 +158,7 @@
         _rightQuotationView.minValue = 0;
         _rightQuotationView.middleValue = 50;
         _rightQuotationView.userInteractionEnabled = NO;
+        _rightQuotationView.isMinutes = YES;
     }
     return _rightQuotationView;
 }

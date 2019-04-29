@@ -28,15 +28,15 @@
 #pragma mark - UI
 
 - (void)setupSubviews {
-//    [self.view addSubview:self.stockChartView];
-    [self.view addSubview:self.minuteView];
-    [self.minuteView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.view addSubview:self.stockChartView];
+//    [self.view addSubview:self.minuteView];
+    [self.stockChartView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.inset(64);
         make.left.right.bottom.equalTo(self.view);
     }];
     
-//    self.stockChartView.kLineModels = self.groupModel.models;
-//    [self.stockChartView draw];
+    self.stockChartView.kLineModels = self.groupModel.models;
+    [self.stockChartView draw];
 }
 
 #pragma mark - Getter
@@ -51,6 +51,7 @@
 - (HLMinuteView *)minuteView {
     if (!_minuteView) {
         _minuteView = [HLMinuteView new];
+        _minuteView.yestodayClosePoints = @(37500);
     }
     return _minuteView;
 }

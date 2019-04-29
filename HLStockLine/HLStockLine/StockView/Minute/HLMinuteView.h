@@ -10,7 +10,10 @@
 
 @interface HLMinuteView : UIView
 
+@property (nonatomic, strong) HLMinutesGroupModel  * groupModel;
 // 昨日收盘价
 @property (nonatomic, strong) NSNumber * yestodayClosePoints;
+
+- (void)draw;
 
 @end
