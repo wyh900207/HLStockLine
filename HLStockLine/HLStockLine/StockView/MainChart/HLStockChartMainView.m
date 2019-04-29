@@ -15,11 +15,11 @@
 @property (nonatomic, assign) CGFloat                                  oldScale;
 @property (nonatomic, strong) NSMutableArray<HLKLineModel *>         * displayLineModel;
 @property (nonatomic, strong) NSMutableArray<HLKLinePositionModel *> * displayLinePositionModel;
-@property (nonatomic, strong) NSMutableArray *MA7Positions;
-@property (nonatomic, strong) NSMutableArray *MA30Positions;
-@property (nonatomic, strong) NSMutableArray *BOLL_MBPositions;
-@property (nonatomic, strong) NSMutableArray *BOLL_UPPositions;
-@property (nonatomic, strong) NSMutableArray *BOLL_DNPositions;
+@property (nonatomic, strong) NSMutableArray                         * MA7Positions;
+@property (nonatomic, strong) NSMutableArray                         * MA30Positions;
+@property (nonatomic, strong) NSMutableArray                         * BOLL_MBPositions;
+@property (nonatomic, strong) NSMutableArray                         * BOLL_UPPositions;
+@property (nonatomic, strong) NSMutableArray                         * BOLL_DNPositions;
 
 @end
 

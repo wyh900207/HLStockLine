@@ -91,6 +91,8 @@
     }];
     
     [self bringSubviewToFront:self.minuteView];
+    
+    self.timeSegmentView.titles = @[@"分时", @"1分", @"5分", @"15分", @"30分", @"1小时", @"4小时", @"日线"];
 }
 
 #pragma mark - 画KLineMainView
@@ -129,7 +131,6 @@
     if (!_timeSegmentView) {
         _timeSegmentView = [HLTimeSegmentView new];
         _timeSegmentView.delegate = self;
-        _timeSegmentView.titles = @[@"分时", @"1分", @"5分", @"15分", @"30分", @"1小时", @"4小时", @"日线"];
     }
     return _timeSegmentView;
 }

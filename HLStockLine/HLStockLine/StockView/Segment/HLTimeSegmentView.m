@@ -10,11 +10,12 @@
 
 @interface HLTimeSegmentView ()
 
-@property (nonatomic, strong) NSMutableArray<UIButton *> *buttons;
-@property (nonatomic, strong) UIImageView *line;
-@property (nonatomic, strong) UIView *topLine;
-@property (nonatomic, strong) UIView *bottomLine;
-@property (nonatomic, assign) NSInteger currentSelectedIndex;
+@property (nonatomic, strong) UIScrollView               * scrollView;
+@property (nonatomic, strong) NSMutableArray<UIButton *> * buttons;
+@property (nonatomic, strong) UIImageView                * line;
+@property (nonatomic, strong) UIView                     * topLine;
+@property (nonatomic, strong) UIView                     * bottomLine;
+@property (nonatomic, assign) NSInteger                    currentSelectedIndex;
 
 @end
 
@@ -41,9 +42,16 @@
     [self.line removeFromSuperview];
     [self.topLine removeFromSuperview];
     [self.bottomLine removeFromSuperview];
+    [self.scrollView removeFromSuperview];
     
-    CGFloat count = self.titles.count;
-    CGFloat width = self.bounds.size.width / count;
+    if (self.titles.count > 5) {
+        CGFloat item_width = self.bounds.size.width * 0.2;
+        self.scrollView.contentSize = CGSizeMake(item_width * self.titles.count, self.bounds.size.height);
+    }
+    self.scrollView.frame = self.bounds;
+    [self addSubview:self.scrollView];
+    
+    CGFloat width = self.bounds.size.width / 5.f;
     
     for (int i = 0; i < self.titles.count; i++) {
         UIColor *normal_color =  [UIColor colorWithRed:135/255.0 green:135/255.0 blue:135/255.0 alpha:1/1.0];
@@ -59,7 +67,7 @@
         [button addTarget:self action:@selector(exchangedMainViewType:) forControlEvents:UIControlEventTouchUpInside];
         
         button.frame = CGRectMake(width * i, 0, width, self.bounds.size.height);
-        [self addSubview:button];
+        [self.scrollView addSubview:button];
         
         tmp_button = button;
         
@@ -72,7 +80,7 @@
     self.topLine.frame = CGRectMake(0, 0, self.bounds.size.width, 0.5);
     self.bottomLine.frame = CGRectMake(0, self.bounds.size.height - 0.5, self.bounds.size.width, 0.5);
     
-    [self addSubview:self.line];
+    [self.scrollView addSubview:self.line];
     [self addSubview:self.topLine];
     [self addSubview:self.bottomLine];
 }
@@ -82,8 +90,8 @@
 - (void)exchangedMainViewType:(UIButton *)button {
     self.currentSelectedIndex = button.tag;
     
-    CGFloat count = self.titles.count;
-    CGFloat width = self.bounds.size.width / count;
+//    CGFloat count = self.titles.count;
+    CGFloat width = self.bounds.size.width / 5.f;
     CGFloat line_origin_x = width * self.currentSelectedIndex + (width - 30) * 0.5;
     
     [UIView animateWithDuration:0.3 animations:^{
@@ -101,8 +109,6 @@
     _titles = titles;
     
     [self layoutIfNeeded];
-    
-    
 }
 
 - (NSMutableArray<UIButton *> *)buttons {
@@ -134,6 +140,14 @@
         _bottomLine.backgroundColor = HexColor(@"E6E6E6");
     }
     return _bottomLine;
+}
+
+- (UIScrollView *)scrollView {
+    if (!_scrollView) {
+        _scrollView = [UIScrollView new];
+        _scrollView.showsHorizontalScrollIndicator = NO;
+    }
+    return _scrollView;
 }
 
 @end
