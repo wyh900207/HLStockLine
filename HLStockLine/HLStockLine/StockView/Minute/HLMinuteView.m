@@ -131,6 +131,24 @@
         min_point_y = self.yestodayClosePoints.integerValue - min_reduce;
     }
     
+    CGFloat max = max_point_y;
+    CGFloat quarter = (max_point_y - min_point_y) * 0.75 + min_point_y;
+    CGFloat middle = (max_point_y + min_point_y) * 0.5;
+    CGFloat three_quarter = (max_point_y - min_point_y) * 0.25 + min_point_y;
+    CGFloat min = min_point_y;
+    
+    self.rightQuotationView.maxValue = max;
+    self.rightQuotationView.minValue = min;
+    self.rightQuotationView.middleValue = middle;
+    self.rightQuotationView.quarterValue = quarter;
+    self.rightQuotationView.threeQuarterValue = three_quarter;
+    
+    self.rightQuotationView.maxPercentValue = (max / middle) - 1;
+    self.rightQuotationView.quarterPercentValue = (quarter / middle) - 1;
+    self.rightQuotationView.middlePercentValue = 0;
+    self.rightQuotationView.threeQuarterPercentValue = 1 - (quarter / middle);
+    self.rightQuotationView.minPercentValue = 1 - (max / middle);
+    
     // X 坐标
     //__block NSMutableArray<HLMinutesPositionModel *> * postion_models = @[].mutableCopy;
     [self.postionModels removeAllObjects];

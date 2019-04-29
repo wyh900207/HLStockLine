@@ -438,6 +438,31 @@
     CGContextStrokeLineSegments(context, top_line, 2);
     CGContextStrokeLineSegments(context, bottom_line, 2);
     
+    //  画虚线
+    for (int i = 1; i < 4; i++) {
+        CGFloat origin_x = rect.size.width * (0.25 * i);
+        CGFloat origin_y = (rect.size.height - 24) * (0.25 * i);
+        CGFloat lengths[] = {5, 5};
+        CGContextSetLineCap(context, kCGLineCapRound);
+        CGContextSetLineWidth(context, 1);
+        CGContextSetStrokeColorWithColor(context, HexColor(@"EEEEEE").CGColor);
+        CGContextBeginPath(context);
+        CGContextSetLineDash(context, 0, lengths, 2);
+        // 纵向
+        CGContextMoveToPoint(context, origin_x, 0);
+        CGContextAddLineToPoint(context, origin_x, rect.size.height - 24);
+        // 横向
+        CGContextMoveToPoint(context, 0, origin_y);
+        CGContextAddLineToPoint(context, rect.size.width, origin_y);
+        
+        CGContextStrokePath(context);
+    }
+    
+    // 取消虚线和圆角
+    CGFloat lengths[] = {5, 0};
+    CGContextSetLineCap(context, kCGLineCapButt);
+    CGContextSetLineDash(context, 0, lengths, 2);
+    
     HLMALine *MALine = [[HLMALine alloc] initWithContext:context];
     
     if (self.MainViewType == Y_StockChartcenterViewTypeKline) {
